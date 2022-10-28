@@ -1,6 +1,15 @@
 // import model category
 const Categories = require("./model");
 
+const {} = require("../../../services/mongoose/categories");
+const {
+  getAllCategories,
+  createCategories,
+  getOneCategories,
+  updateCategories,
+  deleteCategories,
+} = require("../../../services/mongoosex/categories");
+
 // buat function create
 const create = async (req, res, next) => {
   try {
