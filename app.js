@@ -5,6 +5,7 @@ const logger = require("morgan");
 
 const categoriesRouter = require("./app/api/v1/categories/router");
 const talentsRouter = require("./app/api/v1/talents/router");
+const imagesRouter = require("./app/api/v1/images/router");
 const urlV1 = "/api/v1/cms";
 
 const notFoundMiddleware = require("./app/middlewares/not-found");
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(`${urlV1}/categories`, categoriesRouter);
 app.use(`${urlV1}/talents`, talentsRouter);
+app.use(`${urlV1}/images`, imagesRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);
