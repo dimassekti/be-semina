@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+var cors = require("cors");
 
 const categoriesRouter = require("./app/api/v1/categories/router");
 const talentsRouter = require("./app/api/v1/talents/router");
@@ -13,6 +14,7 @@ const handleErrorMiddleware = require("./app/middlewares/handler-error");
 
 const app = express();
 
+app.use(cors()); //cors harus diatas routing
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
