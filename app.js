@@ -4,10 +4,14 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 var cors = require("cors");
 
+const authCMSRouter = require("./app/api/v1/auth/router");
+
 const categoriesRouter = require("./app/api/v1/categories/router");
 const talentsRouter = require("./app/api/v1/talents/router");
 const imagesRouter = require("./app/api/v1/images/router");
 const eventsRouter = require("./app/api/v1/events/router");
+const organizersRouter = require("./app/api/v1/organizers/router");
+
 const urlV1 = "/api/v1/cms";
 
 const notFoundMiddleware = require("./app/middlewares/not-found");
@@ -26,6 +30,8 @@ app.use(`${urlV1}/categories`, categoriesRouter);
 app.use(`${urlV1}/talents`, talentsRouter);
 app.use(`${urlV1}/images`, imagesRouter);
 app.use(`${urlV1}/events`, eventsRouter);
+app.use(`${urlV1}/organizers`, organizersRouter);
+app.use(`${urlV1}/auth`, authCMSRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);

@@ -3,11 +3,13 @@ const router = express();
 
 const { create, index, find, update, destroy } = require("./controller");
 
-router.get("/", index);
-router.post("/", create);
-router.get("/:id", find);
-router.put("/:id", update);
-router.delete("/:id", destroy);
+const { authenticateUser } = require("../../../middlewares/auth");
+
+router.get("/", authenticateUser, index);
+router.post("/", authenticateUser, create);
+router.get("/:id", authenticateUser, find);
+router.put("/:id", authenticateUser, update);
+router.delete("/:id", authenticateUser, destroy);
 
 // router.get("/", (req, res) => {
 //   res.send({ data: "categories" });
