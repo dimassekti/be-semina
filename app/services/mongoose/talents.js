@@ -108,14 +108,14 @@ const deleteTalents = async (req) => {
   return result;
 };
 
-// const checkingTalents = async (id) => {
-//   const result = await Talents.findOne({ _id: id });
+const checkingTalents = async (id) => {
+  const result = await Talents.findOne({ _id: id });
 
-//   if (!result)
-//     throw new NotFoundError(`Tidak ada pembicara dengan id :  ${id}`);
+  if (!result)
+    throw new NotFoundError(`Tidak ada pembicara dengan id :  ${id}`);
 
-//   return result;
-// };
+  return result;
+};
 
 module.exports = {
   getAllTalents,
@@ -123,5 +123,5 @@ module.exports = {
   getOneTalents,
   updateTalents,
   deleteTalents,
-  // checkingTalents,
+  checkingTalents,
 };
