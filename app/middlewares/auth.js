@@ -1,4 +1,4 @@
-const { UnauthenticatedError } = require("../errors");
+const { UnauthenticatedError, UnauthorizedError } = require("../errors");
 const { isTokenValid } = require("../utils/jwt");
 
 const authenticateUser = async (req, res, next) => {
@@ -32,5 +32,13 @@ const authenticateUser = async (req, res, next) => {
     next(error);
   }
 };
+const authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      throw new UnauthorizedError("Unauthorized to access this route");
+    }
+    next();
+  };
+};
 
-module.exports = { authenticateUser };
+module.exports = { authenticateUser, authorizeRoles };
